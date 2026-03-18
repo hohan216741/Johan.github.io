@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #0b0b0f;
+    --text: #f5f5f7;
+    --card: rgba(255,255,255,0.05);
+}
+
+.light {
+    --bg: #f5f5f7;
+    --text: #111;
+    --card: rgba(0,0,0,0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: 0.4s;
+}
+
+/* NAV */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    backdrop-filter: blur(12px);
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 15px;
+    z-index: 1000;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: radial-gradient(circle at 50% 30%, #1a1a2e, #0b0b0f);
+}
+
+.light .hero {
+    background: radial-gradient(circle at 50% 30%, #eaeaf0, #ffffff);
+}
+
+.hero h1 {
+    font-size: 4rem;
+}
+
+.hero p {
+    margin-top: 20px;
+    opacity: 0.7;
+}
+
+/* SECTION */
+section {
+    padding: 120px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* CARD */
+.card {
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+/* PROJECTS */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* IMAGE */
+.project-img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--text);
+    color: var(--bg);
+    text-decoration: none;
+}
+
+/* TOGGLE */
+.toggle {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 60px;
+    opacity: 0.6;
+}
+
+/* FADE */
+.fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<div class="toggle" onclick="toggleMode()">🌓</div>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#projects">Work</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero">
+    <h1>Your Name</h1>
+    <p>I build clean, modern digital experiences.</p>
+    <a href="#" class="btn">Download CV</a>
+</section>
+
+<section id="about" class="fade">
+    <h2>About</h2>
+    <div class="card">
+        <p>
+            I’m passionate about building things that look great and work even better.
+            I focus on simplicity, performance, and clean design.
+        </p>
+    </div>
+</section>
+
+<section id="projects" class="fade">
+    <h2>Projects</h2>
+    <div class="projects">
+        <div class="card">
+            <img src="https://picsum.photos/400/250" class="project-img">
+            <h3>Project One</h3>
+            <p>Modern web app with clean UI.</p>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/401/250" class="project-img">
+            <h3>Project Two</h3>
+            <p>Creative and functional design.</p>
+        </div>
+        <div class="card">
+            <img src="https://picsum.photos/402/250" class="project-img">
+            <h3>Project Three</h3>
+            <p>Something impactful you built.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="fade">
+    <h2>Contact</h2>
+    <div class="card">
+        <p>Email: email@example.com</p>
+        <a href="#" class="btn">Message Me</a>
+    </div>
+</section>
+
+<footer>
+    © 2026 Your Name
+</footer>
+
+<script>
+/* DARK MODE */
+function toggleMode() {
+    document.body.classList.toggle("light");
+}
+
+/* SCROLL ANIMATIONS */
+const faders = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+});
+
+faders.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
